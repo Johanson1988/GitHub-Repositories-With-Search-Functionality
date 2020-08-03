@@ -38,9 +38,13 @@ effectively
 | `/`                       | HomePage              | public     | Home page - Displays Github search bar |
 | `/user/:username`         | RepoDetails           | public   | Displays user repositories info |
 
+## Pages
+
+- Homepage
+- UserRepositories
+
 ## Components
 
-- HomePage
 - 404
 - UserSearchBar
 - UserDetails
