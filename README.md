@@ -1,44 +1,66 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# GitHub Repositories With Search Functionality - `README.md` 
 
-## Available Scripts
 
-In the project directory, you can run:
+## Description
 
-### `yarn start`
+The task is to display the repositories and allow the user to filter through the repositories by name using a search bar. 
+Use the [official GitHub API](https://docs.github.com/en/rest) to fetch repositories per user.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![GitHub repo image](/src/images/github-readme.png)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Requirements
 
-### `yarn test`
+- The application must be written using React
+- You are required to use git for versioning
+- Feel free to use any additional plugin/module to help you get the task done more
+effectively
+- Google Chrome is the testing browser
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Extra credits
 
-### `yarn build`
+- +1 if you write tests
+- +1 If your [code is documented](https://google.github.io/styleguide/jsguide.html#jsdoc)
+- +1 If you’re up for the challenge, use the [v4 API](https://docs.github.com/en/graphql), which is built using GraphQL.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## User Stories
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- **404:** Displayed when the user is not found
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **User Search:** Search bar to look for Github users
 
-### `yarn eject`
+- **User view:** Shows you user repositories
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Client / Frontend
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Routes (React App)
+| Path                      | Component            | Permissions | Behavior                                                     |
+| ------------------------- | -------------------- | ----------- | ------------------------------------------------------------ |
+| `/`                       | HomePage              | public     | Home page - Displays Github search bar |
+| `/user/:username`         | RepoDetails           | public   | Displays user repositories info |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Components
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- HomePage
+- 404
+- UserSearchBar
+- UserDetails
+- ReposDetails
 
-## Learn More
+## API Endpoints (backend routes)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| HTTP Method | URL                         | Request Body                 | Success status | Error Status | Description                                                  |
+| ----------- | --------------------------- | ---------------------------- | -------------- | ------------ | ------------------------------------------------------------ |
+| GET         | `https://api.github.com/users/:username`           | {username}                | 200            | 404          | Gets user info          |
+| GET        | `https://api.github.com/users/:username/repos`                | {username}      | 200            | 404          | Gets user's repositories |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Links
+
+### Trello
+
+[Trello Board](https://trello.com/b/7CPtRRzO/github-repo-mvst) 
+
+### Git
+
+[Github Link](https://github.com/screeeen/project-client)
+
+[Deployed App Link](http://heroku.com)
