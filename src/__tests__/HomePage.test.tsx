@@ -8,3 +8,10 @@ test("Renders h1 message", () => {
     );
     expect(getByTestId("homepage__title")).toHaveTextContent("Welcome");
 });
+
+test("Input search bar recieves user input", () => {
+    const { getByLabelText } = render(
+        <HomePage />
+    )
+    expect(getByLabelText("Introduce a Github username:")).toBeInTheDocument();
+})
