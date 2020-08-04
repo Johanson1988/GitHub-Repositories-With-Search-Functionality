@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { getUsersData } from './../helpers/helpers';
 
-const UserSearchBar: React.FC<{}> = () => {
+type Props = {
+    findUser: (username:string) => void
+}
+
+
+const UserSearchBar: React.FC<Props> = ({ findUser }) => {
 
     const [username, setUserName] = useState('');
 
     useEffect(() => {
-        console.log(username);
-        getUsersData(username);
+        findUser(username);
     });
 
     return(
