@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 type Props = {
     findUser: (username:string) => void
@@ -9,12 +9,14 @@ const UserSearchBar: React.FC<Props> = ({ findUser }) => {
 
     const [username, setUserName] = useState('');
 
-    useEffect(() => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         findUser(username);
-    });
+        console.log("Form submitted");
+    }
 
     return(
-        <form>
+        <form onSubmit={handleSubmit} data-testid="user-searchbar">
             <label htmlFor="user-searchbar">Introduce a Github username:</label>
             <input
                 type="text"
