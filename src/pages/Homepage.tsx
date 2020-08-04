@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import UserSearchBar from './../components/UserSearchBar';
 import UserDetails from './../components/UserDetails';
+import NotFound from './../components/NotFound';
+
 
 import { getUsersData } from '../helpers/API';
 
@@ -31,7 +33,7 @@ const HomePage: React.FC<{}> = () => {
                             imgSrc={userData.avatar_url}
                         />
                     : null 
-                : <h3>404 NOT FOUND</h3>
+                : <NotFound />
                 
 
             }
