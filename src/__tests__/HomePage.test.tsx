@@ -1,10 +1,11 @@
 import React from 'react';
-import { render, fireEvent, wait, getByTestId } from '@testing-library/react';
+import { render, fireEvent, wait } from '@testing-library/react';
 import HomePage from './../pages/Homepage';
 import axios from 'axios';
 import MockAxios from 'axios-mock-adapter';
 
 const mock = new MockAxios(axios, { delayResponse: Math.random() * 500 });
+afterAll(() => mock.restore());
 
 test("Renders h1 message", () => {
     const { getByTestId } = render(
@@ -31,7 +32,7 @@ test("Input search bar recieves user input", () => {
 
 });
 
-test("Renders username after submitting a valid username", () => {
+test("Renders user details after submitting a valid username", () => {
     mock.onGet().reply(200, {
         login: "johanson1988"
     });
@@ -45,5 +46,19 @@ test("Renders username after submitting a valid username", () => {
 
     wait (() => expect(queryByText("Johanson1988")).toBeInTheDocument());
     wait (() => expect(queryByText("404 NOT FOUND")).not.toBeInTheDocument());
+
+});
+
+test("Renders 404 message after submitting invalid username", () => {
+    mock.onGet().reply(200, null);
+    const { queryByText, getByTestId } = render(
+        <HomePage />
+    );
+
+    const searchBarForm = getByTestId("user-searchbar");
+    fireEvent.submit(searchBarForm);
+
+    wait (() => expect(queryByText("Johanson1988")).not.toBeInTheDocument());
+    wait (() => expect(queryByText("404 NOT FOUND")).toBeInTheDocument());
 
 });
