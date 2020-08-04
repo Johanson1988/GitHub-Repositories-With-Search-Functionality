@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import UserSearchBar from './../components/UserSearchBar';
+import UserDetails from './../components/UserDetails';
+
 import { getUsersData } from '../helpers/API';
+
+
 
 const HomePage: React.FC<{}> = () => {
     // eslint-disable-next-line
-        const [userData, setUserData] = useState({login: ''});
+        const [userData, setUserData] = useState({login: '', avatar_url:''});
 
     const getUserName = async(username: string) => {
 
@@ -20,7 +24,14 @@ const HomePage: React.FC<{}> = () => {
             <UserSearchBar findUser={getUserName} />
             <section data-testid="user-container">
             {
-                userData ? userData.login ? <h3>{userData.login}</h3> : null : <h3>404 NOT FOUND</h3>
+                userData ?
+                    userData.login ?
+                        <UserDetails
+                            username={userData.login}
+                            imgSrc={userData.avatar_url}
+                        />
+                    : null 
+                : <h3>404 NOT FOUND</h3>
                 
 
             }
