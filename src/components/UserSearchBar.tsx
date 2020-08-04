@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getUsersData } from './../helpers/helpers';
 
 const UserSearchBar: React.FC<{}> = () => {
 
     const [username, setUserName] = useState('');
+
+    useEffect(() => {
+        console.log(username);
+        getUsersData(username);
+    });
 
     return(
         <form>
