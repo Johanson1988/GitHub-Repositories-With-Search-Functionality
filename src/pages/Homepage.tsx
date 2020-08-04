@@ -7,13 +7,11 @@ const HomePage: React.FC<{}> = () => {
         const [userData, setUserData] = useState({login: ''});
 
     const getUserName = async(username: string) => {
-        if (username.length > 3) {
-            
-            const userData = await getUsersData(username);
-            
-            setUserData(userData);
-            console.log("_USERDATA: ", userData, "_USERNAME: ", username);
-        }
+
+        const userData = await getUsersData(username);
+        
+        setUserData(userData);
+        console.log("_USERDATA: ", userData, "_USERNAME: ", username);
     }
     return(
         <>
@@ -22,7 +20,9 @@ const HomePage: React.FC<{}> = () => {
             <UserSearchBar findUser={getUserName} />
             <section data-testid="user-container">
             {
-                userData.login ? <h3>{userData.login}</h3> : <h3>404 NOT FOUND</h3>
+                userData ? userData.login ? <h3>{userData.login}</h3> : null : <h3>404 NOT FOUND</h3>
+                
+
             }
             </section>
         </>
