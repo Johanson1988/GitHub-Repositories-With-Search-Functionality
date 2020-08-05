@@ -52,7 +52,6 @@ test("Renders user details after submitting a valid username", async() => {
     await wait (() => expect(queryByText("johanson1988")).toBeInTheDocument());
     await wait (() => expect(queryByText("404 NOT FOUND")).not.toBeInTheDocument());
     await wait (() => expect(getByAltText("user-profile")).toBeInTheDocument());
-    await wait (() => expect(queryByText("Repositories")).toBeInTheDocument());
 
 });
 
@@ -75,12 +74,12 @@ test("Renders 404 message after submitting invalid username", async() => {
 test("Displays repos list after submitting valid username", async() => {
     mock.onGet().reply(200, exampleReposObject);
 
-    const { /*container,*/ queryByTestId, } = render(
+    const { /*container,*/ queryByTestId, queryByText } = render(
         <Repositories username="Johanson1988" />
     );
 
     
-    
+    //await wait (() => expect(queryByText("Repositories")).toBeInTheDocument());
     await wait (()=> expect(queryByTestId("repos-container")).not.toBeEmpty());
     //const repoList = container.querySelectorAll(".repo-li-element");
     //await wait(()=> expect(repoList.length).toBe(exampleReposObject.length));
@@ -96,3 +95,14 @@ test("Repos list is empty if submitted wrong user name", async() => {
 
     await wait (()=> expect(queryByTestId("repos-container")).toBeEmpty());
 });
+
+test("Search bar is present if valid username submitted", async() => {
+    mock.onGet().reply(200, exampleReposObject);
+
+    const { queryByTestId, } = render(
+        <Repositories username="Johanson1988" />
+    );
+
+    await wait(() => expect(queryByTestId("repos-searchbar")).toBeInTheDocument());
+
+})
