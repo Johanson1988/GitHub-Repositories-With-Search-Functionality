@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Repositories from './Repositories';
+
 type Props = {
     imgSrc: string,
     username: string,
@@ -11,7 +13,7 @@ const UserDetails: React.FC<Props> = ({ imgSrc, username}) => {
         <>
             <h3>{username}</h3>
             <img src={imgSrc} alt="user-profile" />
-            <h4>Repositories</h4>
+            <Repositories username={username}/>
         </>
     )}
 export default UserDetails;
