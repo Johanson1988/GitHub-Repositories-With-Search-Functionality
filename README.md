@@ -1,5 +1,5 @@
 # GitHub Repositories With Search Functionality - `README.md` 
-
+//TODO añadir pasos de instalación normal y para testing
 
 ## Description
 
