@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { getReposData } from './../helpers/API';
 
+import ReposSearchBar from './ReposSearchBar';
+
 type Props = { username: string };
 
 type ReposArray = { name: string, description: string}[];
@@ -22,7 +24,8 @@ const Repositories: React.FC<Props> = ({ username }) => {
 
     return(
         <>
-        <h4>Repositories</h4>
+        {Array.isArray(reposList) && <h4>Repositories</h4>}
+        {Array.isArray(reposList) && <ReposSearchBar />}
         <ul data-testid="repos-container">
         {
             Array.isArray(reposList) && reposList.map((repoElement, index) => {
