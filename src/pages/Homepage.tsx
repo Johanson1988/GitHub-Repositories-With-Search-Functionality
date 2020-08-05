@@ -23,7 +23,6 @@ const HomePage: React.FC<{}> = () => {
         const userData:userObject = await getUsersData(username);
         
         setUserData(userData);
-        console.log("_USERDATA: ", userData, "_USERNAME: ", username);
     }
     return(
         <>
