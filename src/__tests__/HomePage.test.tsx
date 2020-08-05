@@ -1,8 +1,10 @@
 import React from 'react';
-import { render, fireEvent, wait } from '@testing-library/react';
+import { render, fireEvent, wait, queryByTestId } from '@testing-library/react';
 import HomePage from './../pages/Homepage';
+
 import axios from 'axios';
 import MockAxios from 'axios-mock-adapter';
+import Repositories from './../components/Repositories';
 jest.setTimeout(30000);
 
 const mock = new MockAxios(axios, { delayResponse: Math.random() * 500 });
@@ -65,4 +67,19 @@ test("Renders 404 message after submitting invalid username", async() => {
 
     //TODO Añadir test que compare la longitud de la lista de repositorios con la longitud del objeto de la API
 
+});
+
+test("Displays repos list after submitting valid username", async() => {
+    mock.onGet().reply(200, {
+        login: "johanson1988" //Lista de repos con name y description
+    });
+
+    const { container, queryByTestId, } = render(
+        <Repositories username="Johanson1988" />
+    );
+
+    const repoList = container.querySelectorAll(".repo-li-element");
+    //expect(queryByTestId(container, 'not-empty')).not.toBeEmpty()
+
+    await wait (()=> expect(queryByTestId("repos-container")).not.toBeEmpty());
 });
