@@ -22,12 +22,12 @@ const UserSearchBar: React.FC<Props> = ({ findUser }) => {
                 type="text"
                 id="user-searchbar"
                 value={username}
-                placeholder="Introduce a Github Username"
+                placeholder="Press ENTER or hit Find User"
                 onChange={ (
                     e: React.ChangeEvent<HTMLInputElement>,
                 ): void => setUserName(e.target.value) }
-
             />
+            <button type="submit">Find User</button>
         </form>
     );
 }
