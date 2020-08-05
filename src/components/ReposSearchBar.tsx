@@ -9,8 +9,15 @@ const ReposSearchBar: React.FC<Props> = ({ handleFilter, value }) => {
     
     return(
         <>
-            <label style={{display: "none"}} htmlFor="repos-searchbar"></label>
-            <input data-testid="repos-searchbar" id="repos-searchbar" onChange={handleFilter} value={value} />
+            <label style={{color: "red"}} htmlFor="repos-searchbar">Repo's searchbar</label>
+            <input
+                type="text"
+                data-testid="repos-searchbar"
+                id="repos-searchbar"
+                onChange={handleFilter}
+                value={value} 
+                placeholder="Type to filter repos"
+            />
         </>
     )
 }
