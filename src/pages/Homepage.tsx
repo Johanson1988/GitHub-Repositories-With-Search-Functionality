@@ -6,18 +6,23 @@ import NotFound from './../components/NotFound';
 
 import { getUsersData } from '../helpers/API';
 
-
+type userObject = {
+    login: string,
+    imgSrc: string
+};
 
 const HomePage: React.FC<{}> = () => {
     
-        const [userData, setUserData] = useState({login: '', avatar_url:''});
+        const [userData, setUserData] = useState<userObject | null>({
+            login: '',
+            imgSrc: ''
+        });
 
     const getUserName = async(username: string) => {
 
-        const userData = await getUsersData(username);
+        const userData:userObject = await getUsersData(username);
         
         setUserData(userData);
-        console.log("_USERDATA: ", userData, "_USERNAME: ", username);
     }
     return(
         <>
@@ -30,7 +35,7 @@ const HomePage: React.FC<{}> = () => {
                     userData.login ?
                         <UserDetails
                             username={userData.login}
-                            imgSrc={userData.avatar_url}
+                            imgSrc={userData.imgSrc}
                         />
                     : null 
                 : <NotFound />

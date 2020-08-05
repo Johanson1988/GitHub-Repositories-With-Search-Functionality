@@ -1,14 +1,22 @@
 import React from 'react';
 import { render, fireEvent, wait } from '@testing-library/react';
 import HomePage from './../pages/Homepage';
+
 import axios from 'axios';
 import MockAxios from 'axios-mock-adapter';
+import Repositories from './../components/Repositories';
+
+import exampleReposObject from '../helpers/example-repos-object';
+
+
 jest.setTimeout(30000);
 
 const mock = new MockAxios(axios, { delayResponse: Math.random() * 500 });
 afterAll(() => mock.restore());
 
+
 test("Renders h1 message", () => {
+    
     const { getByTestId } = render(
         <HomePage /> 
     );
@@ -47,7 +55,6 @@ test("Renders user details after submitting a valid username", async() => {
     await wait (() => expect(queryByText("johanson1988")).toBeInTheDocument());
     await wait (() => expect(queryByText("404 NOT FOUND")).not.toBeInTheDocument());
     await wait (() => expect(getByAltText("user-profile")).toBeInTheDocument());
-    await wait (() => expect(queryByText("Repositories")).toBeInTheDocument());
 
 });
 
@@ -65,4 +72,41 @@ test("Renders 404 message after submitting invalid username", async() => {
 
     //TODO Añadir test que compare la longitud de la lista de repositorios con la longitud del objeto de la API
 
+});
+
+test("Displays repos list after submitting valid username", async() => {
+    mock.onGet().reply(200, exampleReposObject);
+
+    const { container, queryByTestId } = render(
+        <Repositories username="Johanson1988" />
+    );
+    
+    await wait (()=> expect(queryByTestId("repos-container")).not.toBeEmpty());
+    
+    await wait(()=> expect(container.querySelectorAll(".repo-li-element").length).toBe(exampleReposObject.length));
+});
+
+test("Repos list is empty if submitted wrong user name", async() => {
+    mock.onGet().reply(200, []);
+
+    const { queryByTestId, } = render(
+        <Repositories username="Johanson1988lalalalalalalalala" />
+    );
+
+    await wait (()=> expect(queryByTestId("repos-container")).toBeEmpty());
+    await wait(() => expect(queryByTestId("repos-searchbar")).not.toBeInTheDocument());
+});
+
+test("Search bar is present if valid username submitted", async() => {
+    mock.onGet().reply(200, exampleReposObject);
+
+    const { container, getByLabelText } = render(
+        <Repositories username="Johanson1988" />
+    );
+    
+    await wait(() => expect(getByLabelText("Repo's searchbar")).toBeInTheDocument());
+    await wait (() => fireEvent.change(getByLabelText("Repo's searchbar"), { target: { value: '-tu'} }));
+    await wait (() => expect(getByLabelText("Repo's searchbar").value).toBe('-tu'));
+    await wait(()=> expect(container.querySelectorAll(".repo-li-element").length).toBe(1));
+    
 });
