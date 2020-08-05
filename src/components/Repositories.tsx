@@ -33,19 +33,21 @@ const Repositories: React.FC<Props> = ({ username }) => {
 
     return(
         <>
-        {Array.isArray(reposList) && <h4>Repositories</h4>}
-        {Array.isArray(reposList) && <ReposSearchBar handleFilter={handleFilter} value={filter} />}
-        <ul data-testid="repos-container">
-        {
-            Array.isArray(reposList) && reposList.filter(repoElement => {
-                return repoElement.name.toLowerCase().includes(filter.toLowerCase());
-            }).map((repoElement, index) => {
-            return(
-                <li key={index} className={"repo-li-element"} >{repoElement.name}</li>
-            )
-            })
-        }
-        </ul>
+            {Array.isArray(reposList) && <h4>Repositories</h4>}
+            {Array.isArray(reposList) && <ReposSearchBar handleFilter={handleFilter} value={filter} />}
+            <ul data-testid="repos-container">
+            {
+                Array.isArray(reposList) && reposList.filter(repoElement => 
+                    repoElement.name.toLowerCase().includes(filter.toLowerCase())
+                ).map((repoElement, index) => 
+                
+                    <li key={index} className={"repo-li-element"} >
+                        <p>{repoElement.name}</p>
+                        <span>{repoElement.description}</span>
+                    </li>
+                )
+            }
+            </ul>
         </>
     )
 
