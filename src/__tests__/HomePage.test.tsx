@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, wait, queryByTestId } from '@testing-library/react';
+import { render, fireEvent, wait } from '@testing-library/react';
 import HomePage from './../pages/Homepage';
 
 import axios from 'axios';
@@ -8,12 +8,15 @@ import Repositories from './../components/Repositories';
 
 import exampleReposObject from '../helpers/example-repos-object';
 
+
 jest.setTimeout(30000);
 
 const mock = new MockAxios(axios, { delayResponse: Math.random() * 500 });
 afterAll(() => mock.restore());
 
+
 test("Renders h1 message", () => {
+    
     const { getByTestId } = render(
         <HomePage /> 
     );
@@ -74,7 +77,7 @@ test("Renders 404 message after submitting invalid username", async() => {
 test("Displays repos list after submitting valid username", async() => {
     mock.onGet().reply(200, exampleReposObject);
 
-    const { /*container,*/ queryByTestId, queryByText } = render(
+    const { /*container,*/ queryByTestId } = render(
         <Repositories username="Johanson1988" />
     );
 
@@ -94,15 +97,20 @@ test("Repos list is empty if submitted wrong user name", async() => {
     );
 
     await wait (()=> expect(queryByTestId("repos-container")).toBeEmpty());
+    await wait(() => expect(queryByTestId("repos-searchbar")).not.toBeInTheDocument());
 });
 
 test("Search bar is present if valid username submitted", async() => {
     mock.onGet().reply(200, exampleReposObject);
 
-    const { queryByTestId, } = render(
+    const { getByLabelText } = render(
         <Repositories username="Johanson1988" />
     );
-
-    await wait(() => expect(queryByTestId("repos-searchbar")).toBeInTheDocument());
+    
+    await wait(() => expect(getByLabelText("Repo's searchbar")).toBeInTheDocument());
+    
+    await wait (() => fireEvent.change(getByLabelText("Repo's searchbar"), { target: { value: 'johanson1988'} }));
+    await wait (() => expect(getByLabelText("Repo's searchbar").value).toBe('johanson1988'));
+    
 
 })
