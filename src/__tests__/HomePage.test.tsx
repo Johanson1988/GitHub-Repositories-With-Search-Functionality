@@ -14,15 +14,6 @@ jest.setTimeout(30000);
 const mock = new MockAxios(axios, { delayResponse: Math.random() * 500 });
 afterAll(() => mock.restore());
 
-
-test("Renders h1 message", () => {
-    
-    const { getByTestId } = render(
-        <HomePage /> 
-    );
-    expect(getByTestId("homepage__title")).toHaveTextContent("Welcome");
-});
-
 test("Input search bar recieves user input", () => {
     
     const { getByLabelText, queryByText } = render(
