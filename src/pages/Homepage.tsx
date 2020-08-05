@@ -26,8 +26,6 @@ const HomePage: React.FC<{}> = () => {
     }
     return(
         <>
-            <h1 data-testid="homepage__title">Welcome</h1>
-
             <UserSearchBar findUser={getUserName} />
             <section data-testid="user-container">
             {
