@@ -15,11 +15,9 @@ test("Renders h1 message", () => {
     expect(getByTestId("homepage__title")).toHaveTextContent("Welcome");
 });
 
-
-
 test("Input search bar recieves user input", () => {
     
-    const { getByLabelText, queryByText, getByTestId } = render(
+    const { getByLabelText, queryByText } = render(
         <HomePage />
     );
     const input = getByLabelText("Introduce a Github username:");

@@ -9,7 +9,7 @@ import { getUsersData } from '../helpers/API';
 
 
 const HomePage: React.FC<{}> = () => {
-    // eslint-disable-next-line
+    
         const [userData, setUserData] = useState({login: '', avatar_url:''});
 
     const getUserName = async(username: string) => {
