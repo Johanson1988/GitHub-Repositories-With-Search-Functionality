@@ -1,11 +1,16 @@
 import React from "react";
 
-const ReposSearchBar: React.FC<{}> = () => {
+type Props = {
+    handleFilter: (e:React.FormEvent<HTMLInputElement>) => void,
+    value: string,
+}
+
+const ReposSearchBar: React.FC<Props> = ({ handleFilter, value }) => {
     
     return(
         <>
             <label style={{display: "none"}} htmlFor="repos-searchbar"></label>
-            <input data-testid="repos-searchbar" id="repos-searchbar" />
+            <input data-testid="repos-searchbar" id="repos-searchbar" onChange={handleFilter} />
         </>
     )
 }
