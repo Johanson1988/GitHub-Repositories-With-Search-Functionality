@@ -28,7 +28,7 @@ figcaption,
 blockquote,
 dl,
 dd {
-  margin: 0;
+  margin: 0 auto;
 }
 
 /* Set core body defaults */
@@ -77,4 +77,42 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* User details */
+
+.user-picture {
+  max-width: 200px;
+  min-width: 150px;
+
+  border-radius: 40%;
+  border: .25rem solid #26a69a;
+
+  /* Prevent background color leak outs */
+  -webkit-background-clip: padding-box; 
+  -moz-background-clip:    padding; 
+  background-clip:         padding-box;
+}
+
+.user-details-container {
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.user-details {
+  margin: 1rem 2rem;
+  color: #26a69a;
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 4px 4px 4px #aaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.user-details > h3 {
+  font-weight: 500;
+  
 }

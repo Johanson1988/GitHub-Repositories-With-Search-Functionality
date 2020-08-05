@@ -27,7 +27,6 @@ const HomePage: React.FC<{}> = () => {
     return(
         <>
             <UserSearchBar findUser={getUserName} />
-            <section data-testid="user-container">
             {
                 userData ?
                     userData.login ?
@@ -37,10 +36,8 @@ const HomePage: React.FC<{}> = () => {
                         />
                     : null 
                 : <NotFound />
-                
 
             }
-            </section>
         </>
     )
 }
