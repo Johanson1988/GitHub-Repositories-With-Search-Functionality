@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import { getReposData } from './../helpers/API';
-
+//Components
 import ReposSearchBar from './ReposSearchBar';
+import RepoListElement from './RepoListElement';
 
 type Props = { username: string };
 
@@ -22,18 +23,19 @@ const Repositories: React.FC<Props> = ({ username }) => {
     })
 
     useEffect(():void => {
-        
+        setReposList(null);
         // Using an IIFE
         (async function anyNameFunction() {
             setReposList(await getReposData(username));
       })();
+      setFilter('');
 
     // eslint-disable-next-line    
-    }, []);
+    },[username]);
 
     return(
         <>
-            {Array.isArray(reposList) && <h4>Repositories</h4>}
+            {Array.isArray(reposList) ? <h4>Repositories</h4> : <h4>Loading repos!!!</h4>}
             {Array.isArray(reposList) && <ReposSearchBar handleFilter={handleFilter} value={filter} />}
             <ul data-testid="repos-container">
             {
@@ -41,10 +43,7 @@ const Repositories: React.FC<Props> = ({ username }) => {
                     repoElement.name.toLowerCase().includes(filter.toLowerCase())
                 ).map((repoElement, index) => 
                 
-                    <li key={index} className={"repo-li-element"} >
-                        <p>{repoElement.name}</p>
-                        <span>{repoElement.description}</span>
-                    </li>
+                    <RepoListElement key={index} name={repoElement.name} description={repoElement.description} />
                 )
             }
             </ul>
