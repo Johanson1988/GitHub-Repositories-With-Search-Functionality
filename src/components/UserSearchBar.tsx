@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 
+/**
+ * React Functional Component
+ * Renders a form with a text input to introduce username. Once the form is
+ * submitted, callback from parent component is launched to make an API call
+ * to get user data.
+ * PROPS:
+ *  @param {function} findUser Callback function to trigger API call in parent component
+ *  passing username introduced by the user.
+ */
+
 type Props = {
     findUser: (username:string) => void
 }
-
 
 const UserSearchBar: React.FC<Props> = ({ findUser }) => {
 

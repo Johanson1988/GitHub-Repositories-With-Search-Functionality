@@ -4,7 +4,7 @@ import HomePage from './../pages/Homepage';
 
 import axios from 'axios';
 import MockAxios from 'axios-mock-adapter';
-import Repositories from './../components/Repositories';
+import Repositories from '../components/RepositoriesContainer';
 
 import exampleReposObject from '../helpers/example-repos-object';
 

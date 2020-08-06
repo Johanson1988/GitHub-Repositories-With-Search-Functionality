@@ -1,5 +1,15 @@
 import React from "react";
 
+/**
+ * React Functional Component
+ * Renders  a card with each repository item
+ * 
+ * PROPS:
+ *  @param {string} name Repo's name.
+ *  @param {string} description Repo's description
+ */
+
+
 type Props = {
     name: string,
     description: string,
