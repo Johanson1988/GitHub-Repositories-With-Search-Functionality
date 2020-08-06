@@ -16,7 +16,7 @@ const UserSearchBar: React.FC<Props> = ({ findUser }) => {
     }
 
     return(
-        <form onSubmit={handleSubmit} data-testid="user-searchbar">
+        <form onSubmit={handleSubmit} data-testid="user-searchbar" className="searchbar row">
             <label htmlFor="user-searchbar">Introduce a Github username:</label>
             <input
                 type="text"
@@ -27,7 +27,7 @@ const UserSearchBar: React.FC<Props> = ({ findUser }) => {
                     e: React.ChangeEvent<HTMLInputElement>,
                 ): void => setUserName(e.target.value) }
             />
-            <button type="submit">Find User</button>
+            <button type="submit" className="btn waves-effect waves-light">Find User</button>
         </form>
     );
 }
