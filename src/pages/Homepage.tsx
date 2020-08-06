@@ -19,19 +19,20 @@ import { getUsersData } from '../helpers/API';
 
 type userObject = {
     login: string,
-    imgSrc: string
+    avatarUrl: string
 };
 
 const HomePage: React.FC<{}> = () => {
     
         const [userData, setUserData] = useState<userObject | null>({
             login: '',
-            imgSrc: ''
+            avatarUrl: ''
         });
 
     const getUserName = async(username: string) => {
 
         const userData:userObject = await getUsersData(username);
+        console.log(userData);
         
         setUserData(userData);
     }
@@ -44,7 +45,7 @@ const HomePage: React.FC<{}> = () => {
                     <>
                         <UserDetails
                             username={userData.login}
-                            imgSrc={userData.imgSrc}
+                            imgSrc={userData.avatarUrl}
                         /> 
                         
                         <Repositories username={userData.login}/>
