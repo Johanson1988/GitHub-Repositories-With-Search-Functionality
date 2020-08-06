@@ -7,9 +7,9 @@ type Props = {
 
 const RepoListElement: React.FC<Props> = ({ name, description }) => {
     return(
-        <li className={"repo-li-element"} >
-            <p>{name}</p>
-            <span>{description}</span>
+        <li className="repo-li-element card-panel teal" >
+            <p className="white-text">{name}</p>
+            <span className="white-text">{description}</span>
         </li>
     )
 }

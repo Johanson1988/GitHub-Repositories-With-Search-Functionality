@@ -105,7 +105,8 @@ select {
 
 .user-details > h3 {
   font-weight: 500;
-  font-size: 4em;
+  font-size: 3em;
+  max-width: 60%;
 }
 
 .user-details > img {
@@ -116,9 +117,29 @@ select {
   max-width: 60%;
   min-width: 40%;
   text-align: center;
+  margin: 0 auto;
 }
 
 .searchbar > button {
   margin-top: 1em;
   
+}
+
+.repos-container {
+  max-width: 60%;
+  min-width: 40%;
+  max-height: 23em;
+  overflow-y: scroll;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  
+  
+  text-align: center;
+  
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.repos-container::-webkit-scrollbar {
+  display: none;
 }
