@@ -34,16 +34,9 @@ const HomePage: React.FC<{}> = () => {
     const getUserName = async(username: string) => {
 
         const userData:userObject = await getUsersData(username);
-        //console.log(JSON.stringify(userData));
-        //console.log(JSON.stringify(userData.repositories.nodes));
-        console.log('USER DATA DENTRO DE LA CALL ', userData);
         setUserData(userData);
         
     }
-
-    useEffect(() => {
-        console.log('USER DATA:', userData);
-    });
 
     return(
         <>

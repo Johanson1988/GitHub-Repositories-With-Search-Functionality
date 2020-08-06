@@ -24,9 +24,7 @@ export const getUsersData = (username: string):any =>
         headers: {
             Authorization: 'Bearer dd6897540c7cf344b92716679173b905ddc7943d'
         }
-    }).then(data => {
-        console.log("DATA EN AXIO: ", data.data);
-        return data.data.data.user})
+    }).then(data => data.data.data.user)
     .catch(() => null)
 
 /** @const  {function} getReposData API call to Github to get repositories data, then 
