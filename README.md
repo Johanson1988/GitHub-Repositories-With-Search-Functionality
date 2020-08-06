@@ -49,18 +49,21 @@ effectively
 
 ## Components
 
-- Main
- - Homepage
-- Layout
- - 404
- - Loading
-- User
- - UserSearchBar
- - UserDetails
-- Repositories
- - RepositoriesContainer
- - ReposSearchBar
- - RepoListElement
+Main
+ * Homepage
+
+Layout
+ * 404
+ * Loading
+
+User
+ * UserSearchBar
+ * UserDetails
+ 
+Repositories
+ * RepositoriesContainer
+ * ReposSearchBar
+ * RepoListElement
 
 ## API Endpoints (backend routes)
 
