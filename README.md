@@ -1,5 +1,4 @@
 # GitHub Repositories With Search Functionality - `README.md` 
-//TODO añadir pasos de instalación normal y para testing
 
 ## Description
 
@@ -22,13 +21,24 @@ effectively
 - +1 If your [code is documented](https://google.github.io/styleguide/jsguide.html#jsdoc)
 - +1 If you’re up for the challenge, use the [v4 API](https://docs.github.com/en/graphql), which is built using GraphQL.
 
+## Tech Stack Used
+
+- ReacjJS
+- Typescript
+- TDD for testing
+- MaterializeCSS
+- Github RestAPI
+- Github GraphQL API
+- Axios
+- MockAxiosAdapter
+
 ## User Stories
 
 - **404:** Displayed when the user is not found
 
 - **User Search:** Search bar to look for Github users
 
-- **User view:** Shows you user repositories
+- **User view:** Shows user repositories
 
 # Client / Frontend
 
@@ -38,24 +48,74 @@ effectively
 | `/`                       | HomePage              | public     | Home page - Displays Github search bar |
 | `/user/:username`         | RepoDetails           | public   | Displays user repositories info |
 
-## Pages
-
-- Homepage
-- UserRepositories
-
 ## Components
 
-- 404
-- UserSearchBar
-- UserDetails
-- ReposDetails
+- Main
+ - Homepage
+- Layout
+ - 404
+ - Loading
+- User
+ - UserSearchBar
+ - UserDetails
+- Repositories
+ - RepositoriesContainer
+ - ReposSearchBar
+ - RepoListElement
 
 ## API Endpoints (backend routes)
+
+### GraphQL Endpoint
+
+- https://api.github.com/graphql
+
+### GraphQL query
+
+```sh
+    query {
+        user(login:"${username}") {
+            login
+            avatarUrl
+            repositories(first: 100, orderBy: {field:NAME, direction:ASC}) {
+                nodes {
+                    name
+                    description
+                    }
+                }
+            }
+        }
+```
+
+### REST Endpoints
 
 | HTTP Method | URL                         | Request Body                 | Success status | Error Status | Description                                                  |
 | ----------- | --------------------------- | ---------------------------- | -------------- | ------------ | ------------------------------------------------------------ |
 | GET         | `https://api.github.com/users/:username`           | {username}                | 200            | 404          | Gets user info          |
 | GET        | `https://api.github.com/users/:username/repos`                | {username}      | 200            | 404          | Gets user's repositories |
+
+## Installation instructions
+
+Requires [Node.js](https://nodejs.org/) v4+ to run.
+
+In your command line, please type the following commands:
+
+```sh
+$ git clone https://github.com/Johanson1988/GitHub-Repositories-With-Search-Functionality.git
+$ cd github-repositories-with-search-functionality
+$ npm i
+$ npm run start
+```
+## Testing instructions
+
+```sh
+$ npm run test
+```
+
+## REST Mode
+
+```sh
+$ git checkout REST-Mode
+```
 
 ## Links
 
@@ -68,3 +128,10 @@ effectively
 [Github Link](https://github.com/screeeen/project-client)
 
 [Deployed App Link](http://heroku.com)
+
+## Author
+* Johann Moreno Noda
+* [Linkedin](https://www.linkedin.com/in/johannmoreno/)
+* [Web Portfolio](https://web-portfolio-johann-moreno.herokuapp.com/)
+* [Github Repo](https://github.com/Johanson1988?tab=stars)
+* [CodeWars](https://www.codewars.com/users/johanson88)
