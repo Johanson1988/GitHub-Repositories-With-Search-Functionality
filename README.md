@@ -46,7 +46,6 @@ effectively
 | Path                      | Component            | Permissions | Behavior                                                     |
 | ------------------------- | -------------------- | ----------- | ------------------------------------------------------------ |
 | `/`                       | HomePage              | public     | Home page - Displays Github search bar |
-| `/user/:username`         | RepoDetails           | public   | Displays user repositories info |
 
 ## Components
 
