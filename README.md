@@ -31,6 +31,7 @@ effectively
 - Github GraphQL API
 - Axios
 - MockAxiosAdapter
+- Responsive
 
 ## User Stories
 

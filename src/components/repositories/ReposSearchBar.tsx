@@ -15,9 +15,7 @@ import React from "react";
     value: string,
 }
 
-const ReposSearchBar: React.FC<Props> = ({ handleFilter, value }) => {
-    
-    return(
+const ReposSearchBar: React.FC<Props> = ({ handleFilter, value }) => 
         <>
             <div className="row searchbar" >
                 <label htmlFor="repos-searchbar" style={{display: "none"}}>Repo's searchbar</label>
@@ -31,7 +29,5 @@ const ReposSearchBar: React.FC<Props> = ({ handleFilter, value }) => {
                 />
             </div>
         </>
-    )
-}
 
 export default ReposSearchBar;

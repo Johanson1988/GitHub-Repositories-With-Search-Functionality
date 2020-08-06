@@ -1,8 +1,8 @@
 import React from 'react';
+
 /**
  * React Functional Component
- * Renders not found message when
- * the user is not found on the Database
+ * Renders not found message when the user is not found on the Database
  * 
  * PROPS:
  *  NO PROPS.

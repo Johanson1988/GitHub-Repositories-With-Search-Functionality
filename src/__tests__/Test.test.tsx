@@ -2,13 +2,13 @@ import React from 'react';
 
 /**Import testing library */
 import { render, fireEvent, wait } from '@testing-library/react';
-import HomePage from '../pages/Homepage';
+import HomePage from '../components/main/Homepage';
 
 /** Import axios for http request */
 import axios from 'axios';
 /** Import axios mock to avoid many API calls during testing */
 import MockAxios from 'axios-mock-adapter';
-import Repositories from '../components/RepositoriesContainer';
+import RepositoriesContainer from '../components/repositories/RepositoriesContainer';
 /** Example Object to mock API calls */
 import exampleReposObject from '../helpers/example-repos-object';
 
@@ -110,7 +110,7 @@ test("Displays repos list after submitting valid username", async() => {
      */
     
     const { container, queryByTestId } = render(
-        <Repositories repositories={exampleReposObject} />
+        <RepositoriesContainer repositories={exampleReposObject} />
     );
     
     await wait (()=> expect(queryByTestId("repos-container")).not.toBeEmpty());
@@ -118,7 +118,7 @@ test("Displays repos list after submitting valid username", async() => {
     await wait(()=> expect(container.querySelectorAll(".repo-li-element").length).toBe(exampleReposObject.length));
 });
 
-test("Repositories container is not rendered if wrong username submitted", async() => {
+test("RepositoriesContainer container is not rendered if wrong username submitted", async() => {
 
     /**
      * Mock axios call returning dummy empty object
@@ -149,7 +149,7 @@ test("Repositories container is not rendered if wrong username submitted", async
 test("Search bar is present if valid username submitted and working as expected", async() => {
 
     /**
-     * Passing an example Object as a Prop to Repositories and simulating user types "-tu"
+     * Passing an example Object as a Prop to RepositoriesContainer and simulating user types "-tu"
      * in the filter
      * 
      * TEST IF:
@@ -159,7 +159,7 @@ test("Search bar is present if valid username submitted and working as expected"
      */
 
     const { container, getByLabelText } = render(
-        <Repositories repositories={exampleReposObject} />
+        <RepositoriesContainer repositories={exampleReposObject} />
     );
 
     const filter:string = "-tu";

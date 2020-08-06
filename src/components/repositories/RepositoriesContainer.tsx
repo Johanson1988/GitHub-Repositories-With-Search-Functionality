@@ -13,17 +13,16 @@ import React, { useEffect, useState } from "react";
  *  @param {string} username username.
  */
 
-
 /** Import Components */
 import ReposSearchBar from './ReposSearchBar';
 import RepoListElement from './RepoListElement';
-import Loading from './Loading';
+import Loading from '../layout/Loading';
 
 type Props = { repositories: any[] };
 
 type ReposArray = { name: string, description: string}[];
 
-const Repositories: React.FC<Props> = ({ repositories }) => {
+const RepositoriesContainer: React.FC<Props> = ({ repositories }) => {
 
     const [reposList, setReposList] = useState<ReposArray | null>(null);
     const [filter, setFilter] = useState<string>('');
@@ -31,12 +30,12 @@ const Repositories: React.FC<Props> = ({ repositories }) => {
     const handleFilter = (e:React.FormEvent<HTMLInputElement>):void => {
         setFilter(e.currentTarget.value);
     }
-    /** Load repositories to the state in the first render */
+    /** Load repositories to the state on the first render */
     useEffect(():void => {
         setReposList(repositories);
         // eslint-disable-next-line    
     }, [])
-    /**If repositories has changed, set the filter state to empty */
+    /** If repositories has changed, set the filter state to empty */
     useEffect(():void => {
       setFilter('');
     // eslint-disable-next-line    
@@ -66,4 +65,4 @@ const Repositories: React.FC<Props> = ({ repositories }) => {
     )
 }
 
-export default Repositories;
+export default RepositoriesContainer;

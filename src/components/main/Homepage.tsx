@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 /**
  * React Functional Component
@@ -9,13 +9,13 @@ import React, { useState, useEffect } from "react";
  */
 
 /** Import Components */
-import UserSearchBar from './../components/UserSearchBar';
-import UserDetails from './../components/UserDetails';
-import NotFound from './../components/NotFound';
-import Repositories from './../components/RepositoriesContainer';
+import UserSearchBar from '../user/UserSearchBar';
+import UserDetails from '../user/UserDetails';
+import NotFound from '../layout/NotFound';
+import RepositoriesContainer from '../repositories/RepositoriesContainer';
 
 /** Import API functions */
-import { getUsersData } from '../helpers/API';
+import { getUsersData } from '../../helpers/API';
 
 type userObject = {
     login: string,
@@ -25,25 +25,17 @@ type userObject = {
 
 const HomePage: React.FC<{}> = () => {
     
-        const [userData, setUserData] = useState<userObject | null>({
-            login: '',
-            avatarUrl: '',
-            repositories: { nodes: [] }
-        });
+    const [userData, setUserData] = useState<userObject | null>({
+        login: '',
+        avatarUrl: '',
+        repositories: { nodes: [] }
+    });
 
     const getUserName = async(username: string) => {
 
         const userData:userObject = await getUsersData(username);
-        //console.log(JSON.stringify(userData));
-        //console.log(JSON.stringify(userData.repositories.nodes));
-        console.log('USER DATA DENTRO DE LA CALL ', userData);
         setUserData(userData);
-        
-    }
-
-    useEffect(() => {
-        console.log('USER DATA:', userData);
-    });
+    };
 
     return(
         <>
@@ -55,13 +47,11 @@ const HomePage: React.FC<{}> = () => {
                         <UserDetails
                             username={userData.login}
                             imgSrc={userData.avatarUrl}
-                        /> 
-                        
-                        <Repositories repositories={userData.repositories.nodes}/>
+                        />                         
+                        <RepositoriesContainer repositories={userData.repositories.nodes}/>
                     </>
                     : null 
                 : <NotFound />
-
             }
         </>
     )
