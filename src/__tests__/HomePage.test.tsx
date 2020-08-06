@@ -32,7 +32,9 @@ test("Input search bar recieves user input", () => {
 
 test("Renders user details after submitting a valid username", async() => {
     mock.onGet().reply(200, {
-        login: "johanson1988"
+        login: "johanson1988",
+        avatarUrl: "dummy",
+        repositories: { nodes: [] }
     });
 
     const { queryByText, getByTestId, getByAltText } = render(
@@ -66,10 +68,10 @@ test("Renders 404 message after submitting invalid username", async() => {
 });
 
 test("Displays repos list after submitting valid username", async() => {
-    mock.onGet().reply(200, exampleReposObject);
+    
 
     const { container, queryByTestId } = render(
-        <Repositories username="Johanson1988" />
+        <Repositories repositories={exampleReposObject} />
     );
     
     await wait (()=> expect(queryByTestId("repos-container")).not.toBeEmpty());
@@ -81,7 +83,7 @@ test("Repos list is empty if submitted wrong user name", async() => {
     mock.onGet().reply(200, []);
 
     const { queryByTestId, } = render(
-        <Repositories username="Johanson1988lalalalalalalalala" />
+        <Repositories repositories={[]} />
     );
 
     await wait (()=> expect(queryByTestId("repos-container")).toBeEmpty());
@@ -92,7 +94,7 @@ test("Search bar is present if valid username submitted", async() => {
     mock.onGet().reply(200, exampleReposObject);
 
     const { container, getByLabelText } = render(
-        <Repositories username="Johanson1988" />
+        <Repositories repositories={exampleReposObject} />
     );
     
     await wait(() => expect(getByLabelText("Repo's searchbar")).toBeInTheDocument());

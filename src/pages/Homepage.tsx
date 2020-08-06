@@ -19,23 +19,28 @@ import { getUsersData } from '../helpers/API';
 
 type userObject = {
     login: string,
-    avatarUrl: string
+    avatarUrl: string,
+    repositories: { nodes: any[] }
 };
 
 const HomePage: React.FC<{}> = () => {
     
         const [userData, setUserData] = useState<userObject | null>({
             login: '',
-            avatarUrl: ''
+            avatarUrl: '',
+            repositories: { nodes: [] }
         });
 
     const getUserName = async(username: string) => {
 
         const userData:userObject = await getUsersData(username);
-        console.log(userData);
+        //console.log(JSON.stringify(userData));
+        //console.log(JSON.stringify(userData.repositories.nodes));
         
         setUserData(userData);
+        console.log('USER DATA:', userData)
     }
+
     return(
         <>
             <UserSearchBar findUser={getUserName} />
@@ -48,7 +53,7 @@ const HomePage: React.FC<{}> = () => {
                             imgSrc={userData.avatarUrl}
                         /> 
                         
-                        <Repositories username={userData.login}/>
+                        <Repositories repositories={userData.repositories.nodes}/>
                     </>
                     : null 
                 : <NotFound />
