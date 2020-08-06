@@ -12,7 +12,6 @@ const UserSearchBar: React.FC<Props> = ({ findUser }) => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         findUser(username);
-        console.log("Form submitted");
     }
 
     return(

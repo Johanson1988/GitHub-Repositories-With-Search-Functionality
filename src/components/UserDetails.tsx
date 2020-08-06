@@ -8,7 +8,6 @@ type Props = {
 }
 
 const UserDetails: React.FC<Props> = ({ imgSrc, username}) => {
-    console.log('USERNAME: ', username)
     return (
         <>
             <div className="user-details-container" >
