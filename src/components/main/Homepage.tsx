@@ -25,18 +25,17 @@ type userObject = {
 
 const HomePage: React.FC<{}> = () => {
     
-        const [userData, setUserData] = useState<userObject | null>({
-            login: '',
-            avatarUrl: '',
-            repositories: { nodes: [] }
-        });
+    const [userData, setUserData] = useState<userObject | null>({
+        login: '',
+        avatarUrl: '',
+        repositories: { nodes: [] }
+    });
 
     const getUserName = async(username: string) => {
 
         const userData:userObject = await getUsersData(username);
         setUserData(userData);
-        
-    }
+    };
 
     return(
         <>
@@ -48,13 +47,11 @@ const HomePage: React.FC<{}> = () => {
                         <UserDetails
                             username={userData.login}
                             imgSrc={userData.avatarUrl}
-                        /> 
-                        
+                        />                         
                         <RepositoriesContainer repositories={userData.repositories.nodes}/>
                     </>
                     : null 
                 : <NotFound />
-
             }
         </>
     )

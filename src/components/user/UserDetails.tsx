@@ -22,7 +22,6 @@ const UserDetails: React.FC<Props> = ({ imgSrc, username}) =>
                 <div className="user-details">
                     <h3 >{username}</h3>
                 </div>
-
             </div>
         </>
 
