@@ -112,13 +112,13 @@ $ npm run start
 
 ```sh
 $ npm run test
-$ npm run start
 ```
 
 ## REST Mode
 
 ```sh
 $ git checkout REST-Mode
+$ npm run start
 ```
 
 ## Links
