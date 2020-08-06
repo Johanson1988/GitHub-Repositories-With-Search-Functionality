@@ -23,7 +23,7 @@ effectively
 
 ## Tech Stack Used
 
-- ReacjJS
+- React
 - Typescript
 - TDD for testing
 - MaterializeCSS
