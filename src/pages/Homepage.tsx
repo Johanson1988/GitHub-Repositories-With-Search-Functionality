@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 /**
  * React Functional Component
@@ -19,22 +19,32 @@ import { getUsersData } from '../helpers/API';
 
 type userObject = {
     login: string,
-    imgSrc: string
+    avatarUrl: string,
+    repositories: { nodes: any[] }
 };
 
 const HomePage: React.FC<{}> = () => {
     
         const [userData, setUserData] = useState<userObject | null>({
             login: '',
-            imgSrc: ''
+            avatarUrl: '',
+            repositories: { nodes: [] }
         });
 
     const getUserName = async(username: string) => {
 
         const userData:userObject = await getUsersData(username);
-        
+        //console.log(JSON.stringify(userData));
+        //console.log(JSON.stringify(userData.repositories.nodes));
+        console.log('USER DATA DENTRO DE LA CALL ', userData);
         setUserData(userData);
+        
     }
+
+    useEffect(() => {
+        console.log('USER DATA:', userData);
+    });
+
     return(
         <>
             <UserSearchBar findUser={getUserName} />
@@ -44,10 +54,10 @@ const HomePage: React.FC<{}> = () => {
                     <>
                         <UserDetails
                             username={userData.login}
-                            imgSrc={userData.imgSrc}
+                            imgSrc={userData.avatarUrl}
                         /> 
                         
-                        <Repositories username={userData.login}/>
+                        <Repositories repositories={userData.repositories.nodes}/>
                     </>
                     : null 
                 : <NotFound />
