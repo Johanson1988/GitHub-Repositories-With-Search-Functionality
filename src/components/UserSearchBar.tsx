@@ -41,7 +41,3 @@ const UserSearchBar: React.FC<Props> = ({ findUser }) => {
 }
 
 export default UserSearchBar;
-
-//Ahora tengo que poner que cuando presionas ENTER hace el API call
-//  el test comprueba que el nombre de usuario recibido es el mismo que se introduce
-//si lo que recibes está empty tiene que aparecer el componente 404
