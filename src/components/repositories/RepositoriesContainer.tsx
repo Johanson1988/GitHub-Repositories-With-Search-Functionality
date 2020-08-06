@@ -17,7 +17,7 @@ import React, { useEffect, useState } from "react";
 /** Import Components */
 import ReposSearchBar from './ReposSearchBar';
 import RepoListElement from './RepoListElement';
-import Loading from './Loading';
+import Loading from '../layout/Loading';
 
 type Props = { repositories: any[] };
 

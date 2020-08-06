@@ -9,13 +9,13 @@ import React, { useState, useEffect } from "react";
  */
 
 /** Import Components */
-import UserSearchBar from './../components/UserSearchBar';
-import UserDetails from './../components/UserDetails';
-import NotFound from './../components/NotFound';
-import Repositories from './../components/RepositoriesContainer';
+import UserSearchBar from '../user/UserSearchBar';
+import UserDetails from '../user/UserDetails';
+import NotFound from '../layout/NotFound';
+import Repositories from '../repositories/RepositoriesContainer';
 
 /** Import API functions */
-import { getUsersData } from '../helpers/API';
+import { getUsersData } from '../../helpers/API';
 
 type userObject = {
     login: string,

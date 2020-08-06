@@ -2,13 +2,13 @@ import React from 'react';
 
 /**Import testing library */
 import { render, fireEvent, wait } from '@testing-library/react';
-import HomePage from '../pages/Homepage';
+import HomePage from '../components/main/Homepage';
 
 /** Import axios for http request */
 import axios from 'axios';
 /** Import axios mock to avoid many API calls during testing */
 import MockAxios from 'axios-mock-adapter';
-import Repositories from '../components/RepositoriesContainer';
+import Repositories from '../components/repositories/RepositoriesContainer';
 /** Example Object to mock API calls */
 import exampleReposObject from '../helpers/example-repos-object';
 
