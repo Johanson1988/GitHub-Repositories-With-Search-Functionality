@@ -1,4 +1,13 @@
 import React from 'react';
+/**
+ * React Functional Component
+ * Renders spin while loading
+ * repositories
+ * 
+ * PROPS:
+ *  NO PROPS.
+ */
+
 
 const Loading:React.FC<{}> = () => {
     return(

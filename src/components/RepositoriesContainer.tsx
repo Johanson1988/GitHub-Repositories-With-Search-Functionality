@@ -1,7 +1,21 @@
 import React, { useEffect, useState } from "react";
 
-import { getReposData } from './../helpers/API';
-//Components
+/**
+ * React Functional Component
+ * Container for Repository elements. Recieves username as a prop,
+ * emits an API call to get user's repo data and displays
+ * the information.
+ * 
+ * Once information is fetched, searchbar is displayes. When user
+ * types, repositories are filtered with user input.
+ * 
+ * PROPS:
+ *  @param {string} username username.
+ */
+
+/** Import API functions */
+import { getReposData } from '../helpers/API';
+/** Import Components */
 import ReposSearchBar from './ReposSearchBar';
 import RepoListElement from './RepoListElement';
 import Loading from './Loading';

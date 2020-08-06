@@ -1,6 +1,16 @@
 import React from "react";
 
-type Props = {
+/**
+ * React Functional Component
+ * Renders a searchbar to filter repositories.
+ * PROPS:
+ *  @param {function} handlefilter Callback function to update state
+ *  in parent component: RepositoriesContainer.
+ *  @param {string} value State property filter of parent component: RepositoriesContainer,
+ *  is the value of the filter to filter repositories list.
+ */
+
+ type Props = {
     handleFilter: (e:React.FormEvent<HTMLInputElement>) => void,
     value: string,
 }
