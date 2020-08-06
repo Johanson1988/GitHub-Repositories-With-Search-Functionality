@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 /**
  * React Functional Component
@@ -36,10 +36,14 @@ const HomePage: React.FC<{}> = () => {
         const userData:userObject = await getUsersData(username);
         //console.log(JSON.stringify(userData));
         //console.log(JSON.stringify(userData.repositories.nodes));
-        
+        console.log('USER DATA DENTRO DE LA CALL ', userData);
         setUserData(userData);
-        console.log('USER DATA:', userData)
+        
     }
+
+    useEffect(() => {
+        console.log('USER DATA:', userData);
+    });
 
     return(
         <>

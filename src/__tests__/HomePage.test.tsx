@@ -31,10 +31,14 @@ test("Input search bar recieves user input", () => {
 });
 
 test("Renders user details after submitting a valid username", async() => {
-    mock.onGet().reply(200, {
-        login: "johanson1988",
-        avatarUrl: "dummy",
-        repositories: { nodes: [] }
+    mock.onPost().reply(200, {
+        data: {
+            user: {
+                login: "johanson1988",
+                avatarUrl: "dummy",
+                repositories: { nodes: [] } 
+            }
+        }
     });
 
     const { queryByText, getByTestId, getByAltText } = render(
@@ -52,7 +56,7 @@ test("Renders user details after submitting a valid username", async() => {
 });
 
 test("Renders 404 message after submitting invalid username", async() => {
-    mock.onGet().reply(200, null);
+    mock.onPost().reply(200, null);
     const { queryByText, getByTestId, } = render(
         <HomePage />
     );
@@ -69,7 +73,6 @@ test("Renders 404 message after submitting invalid username", async() => {
 
 test("Displays repos list after submitting valid username", async() => {
     
-
     const { container, queryByTestId } = render(
         <Repositories repositories={exampleReposObject} />
     );
@@ -79,27 +82,39 @@ test("Displays repos list after submitting valid username", async() => {
     await wait(()=> expect(container.querySelectorAll(".repo-li-element").length).toBe(exampleReposObject.length));
 });
 
-test("Repos list is empty if submitted wrong user name", async() => {
-    mock.onGet().reply(200, []);
+test("Repositories container is not rendered if wrong username submitted", async() => {
+    mock.onPost().reply(200, {
+        data: {
+            user: {
+                login: "",
+                avatarUrl: "",
+                repositories: { nodes: [] } 
+            }
+        }
+    });
 
     const { queryByTestId, } = render(
-        <Repositories repositories={[]} />
+        <HomePage />
     );
 
-    await wait (()=> expect(queryByTestId("repos-container")).toBeEmpty());
+    await wait (()=> expect(queryByTestId("repos-container")).not.toBeInTheDocument());
     await wait(() => expect(queryByTestId("repos-searchbar")).not.toBeInTheDocument());
 });
 
-test("Search bar is present if valid username submitted", async() => {
-    mock.onGet().reply(200, exampleReposObject);
+test("Search bar is present if valid username submitted and working as expected", async() => {
 
     const { container, getByLabelText } = render(
         <Repositories repositories={exampleReposObject} />
     );
+
+    const filter:string = "-tu";
+    const filteredReposLength = exampleReposObject.filter(
+        repoElement => repoElement.name.toLowerCase().includes(filter.toLowerCase())
+    ).length;
     
     await wait(() => expect(getByLabelText("Repo's searchbar")).toBeInTheDocument());
     await wait (() => fireEvent.change(getByLabelText("Repo's searchbar"), { target: { value: '-tu'} }));
     await wait (() => expect(getByLabelText("Repo's searchbar").value).toBe('-tu'));
-    await wait(()=> expect(container.querySelectorAll(".repo-li-element").length).toBe(1));
+    await wait(()=> expect(container.querySelectorAll(".repo-li-element").length).toBe(filteredReposLength));
     
 });
