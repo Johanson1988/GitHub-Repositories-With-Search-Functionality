@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 /**
  * React Functional Component
@@ -12,7 +12,7 @@ import React, { useState, useEffect } from "react";
 import UserSearchBar from '../user/UserSearchBar';
 import UserDetails from '../user/UserDetails';
 import NotFound from '../layout/NotFound';
-import Repositories from '../repositories/RepositoriesContainer';
+import RepositoriesContainer from '../repositories/RepositoriesContainer';
 
 /** Import API functions */
 import { getUsersData } from '../../helpers/API';
@@ -50,7 +50,7 @@ const HomePage: React.FC<{}> = () => {
                             imgSrc={userData.avatarUrl}
                         /> 
                         
-                        <Repositories repositories={userData.repositories.nodes}/>
+                        <RepositoriesContainer repositories={userData.repositories.nodes}/>
                     </>
                     : null 
                 : <NotFound />
