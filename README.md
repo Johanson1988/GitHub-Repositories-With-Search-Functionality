@@ -112,6 +112,7 @@ $ npm run start
 
 ```sh
 $ npm run test
+$ npm run start
 ```
 
 ## REST Mode
@@ -129,8 +130,6 @@ $ git checkout REST-Mode
 ### Git
 
 [Github Link](https://github.com/screeeen/project-client)
-
-[Deployed App Link](http://heroku.com)
 
 ## Author
 * Johann Moreno Noda
