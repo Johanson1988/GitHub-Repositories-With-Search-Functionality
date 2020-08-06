@@ -1,18 +1,31 @@
 import axios from 'axios';
 
+/** @const  {function} getUsersData API call to Github GraphQL API using a query to return:
+ * - username
+ * - avatar picture
+ * - repositories' names
+ * - repositories' descriptions
+*/
+
 export const getUsersData = (username: string):any =>
-    axios.get(`https://api.github.com/users/${username}`)
-        .then(data => {
-            return {login: data.data.login, imgSrc: data.data.avatar_url}
-        })
-        .catch(() => null);
-
-export const getReposData = (username: string):any => 
-    axios.get(`https://api.github.com/users/${username}/repos`)
-        .then(data => {
-
-            return data.data.map((repo: { name: string; description: string; }) => {
-                return {name: repo.name, description: repo.description}
-            });
-        })
-        .catch(() => null);
+    axios({
+        method: 'post',
+        url: 'https://api.github.com/graphql',
+        data: { query: `query {
+            user(login:"${username}") {
+                login
+                avatarUrl
+                repositories(first: 100, orderBy: {field:NAME, direction:ASC}) {
+                    nodes {
+                        name
+                        description
+                        }
+                    }
+                }
+            }` 
+        },
+        headers: {
+            Authorization: 'Bearer dd6897540c7cf344b92716679173b905ddc7943d'
+        }
+    }).then(data => data.data.data.user)
+    .catch(() => null)

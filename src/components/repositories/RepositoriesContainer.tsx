@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from "react";
 
-import { getReposData } from './../helpers/API';
-//Components
+/**
+ * React Functional Component
+ * Container for Repository elements. Recieves username as a prop,
+ * emits an API call to get user's repo data and displays
+ * the information.
+ * 
+ * Once information is fetched, searchbar is displayes. When user
+ * types, repositories are filtered with user input.
+ * 
+ * PROPS:
+ *  @param {string} username username.
+ */
+
+/** Import Components */
 import ReposSearchBar from './ReposSearchBar';
 import RepoListElement from './RepoListElement';
-import Loading from './Loading';
+import Loading from '../layout/Loading';
 
-type Props = { username: string };
+type Props = { repositories: any[] };
 
 type ReposArray = { name: string, description: string}[];
 
-const Repositories: React.FC<Props> = ({ username }) => {
+const RepositoriesContainer: React.FC<Props> = ({ repositories }) => {
 
     const [reposList, setReposList] = useState<ReposArray | null>(null);
     const [filter, setFilter] = useState<string>('');
@@ -18,17 +30,16 @@ const Repositories: React.FC<Props> = ({ username }) => {
     const handleFilter = (e:React.FormEvent<HTMLInputElement>):void => {
         setFilter(e.currentTarget.value);
     }
-
+    /** Load repositories to the state on the first render */
     useEffect(():void => {
-        setReposList(null);
-        // Using an IIFE
-        (async function anyNameFunction() {
-            setReposList(await getReposData(username));
-      })();
+        setReposList(repositories);
+        // eslint-disable-next-line    
+    }, [])
+    /** If repositories has changed, set the filter state to empty */
+    useEffect(():void => {
       setFilter('');
-
     // eslint-disable-next-line    
-    },[username]);
+    },[repositories]);
 
     return(
         <>
@@ -54,4 +65,4 @@ const Repositories: React.FC<Props> = ({ username }) => {
     )
 }
 
-export default Repositories;
+export default RepositoriesContainer;

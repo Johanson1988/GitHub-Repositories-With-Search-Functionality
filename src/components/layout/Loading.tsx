@@ -1,7 +1,15 @@
 import React from 'react';
 
-const Loading:React.FC<{}> = () => {
-    return(
+/**
+ * React Functional Component
+ * Renders spin while loading
+ * repositories
+ * 
+ * PROPS:
+ *  NO PROPS.
+ */
+
+const Loading:React.FC<{}> = () => 
         <div className="preloader-wrapper big active">
             <div className="spinner-layer spinner-green-only">
             <div className="circle-clipper left">
@@ -13,7 +21,5 @@ const Loading:React.FC<{}> = () => {
             </div>
             </div>
         </div>
-    )
-}
 
 export default Loading;

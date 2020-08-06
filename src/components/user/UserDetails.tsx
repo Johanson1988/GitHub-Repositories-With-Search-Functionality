@@ -1,14 +1,19 @@
 import React from 'react';
 
-import Repositories from './Repositories';
+/**
+ * React Functional Component
+ * Displays username and profile picture
+ * PROPS:
+ *  @param {object} userData Object with username and link to github profile picture
+ *  in parent component: RepositoriesContainer.
+ */
 
 type Props = {
     imgSrc: string,
     username: string,
 }
 
-const UserDetails: React.FC<Props> = ({ imgSrc, username}) => {
-    return (
+const UserDetails: React.FC<Props> = ({ imgSrc, username}) => 
         <>
             <div className="user-details-container" >
                 <div className="user-details">
@@ -17,9 +22,7 @@ const UserDetails: React.FC<Props> = ({ imgSrc, username}) => {
                 <div className="user-details">
                     <h3 >{username}</h3>
                 </div>
-
             </div>
-            <Repositories username={username}/>
         </>
-    )}
+
 export default UserDetails;
