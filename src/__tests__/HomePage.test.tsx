@@ -61,8 +61,6 @@ test("Renders 404 message after submitting invalid username", async() => {
     await wait (() => expect(queryByText("Johanson1988")).not.toBeInTheDocument());
     await wait (() => expect(queryByText("404 NOT FOUND")).toBeInTheDocument());
 
-    //TODO Añadir test que compare la longitud de la lista de repositorios con la longitud del objeto de la API
-
 });
 
 test("Displays repos list after submitting valid username", async() => {
