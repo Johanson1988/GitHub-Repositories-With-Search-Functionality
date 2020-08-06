@@ -9,7 +9,7 @@ const ReposSearchBar: React.FC<Props> = ({ handleFilter, value }) => {
     
     return(
         <>
-            <div className="row searchbar" style={{border: "2px solid red"}}>
+            <div className="row searchbar" >
                 <label htmlFor="repos-searchbar" style={{display: "none"}}>Repo's searchbar</label>
                 <input
                     type="text"

@@ -1,5 +1,9 @@
 /*CSS Reset got from https://dev.to/hankchizljaw/a-modern-css-reset-6p3 */
 
+.App {
+  text-align: center;
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -100,7 +104,6 @@ select {
   margin: 0rem auto .5em auto;
   color: #26a69a;
   font-family: 'Montserrat', sans-serif;
-  border: 2px solid blue;
 }
 
 .user-details > h3 {
@@ -121,8 +124,7 @@ select {
 }
 
 .searchbar > button {
-  margin-top: 1em;
-  
+  margin-top: 1em;  
 }
 
 .repos-container {
@@ -133,10 +135,7 @@ select {
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
-  
-  
   text-align: center;
-  
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
