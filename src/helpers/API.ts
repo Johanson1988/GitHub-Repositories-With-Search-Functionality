@@ -7,6 +7,9 @@ import axios from 'axios';
  * - repositories' descriptions
 */
 
+// ADD TOKEN HERE
+const token = "";
+
 export const getUsersData = (username: string):any =>
     axios({
         method: 'post',
@@ -25,7 +28,7 @@ export const getUsersData = (username: string):any =>
             }` 
         },
         headers: {
-            Authorization: 'Bearer dd6897540c7cf344b92716679173b905ddc7943d'
+            Authorization: `Bearer ${token}`
         }
     }).then(data => data.data.data.user)
     .catch(() => null)
