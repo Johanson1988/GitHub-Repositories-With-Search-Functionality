@@ -105,6 +105,7 @@ In your command line, please type the following commands:
 ```sh
 $ git clone https://github.com/Johanson1988/GitHub-Repositories-With-Search-Functionality.git
 $ cd github-repositories-with-search-functionality
+Add a valid githubtoken inside the file scr/helpers.API.ts, inside variable token. It might be one of your own, or the one I supplied by email.
 $ npm i
 $ npm run start
 ```
